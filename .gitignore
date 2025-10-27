@@ -16,3 +16,6 @@ __pycache__/
 
 # Misc
 .DS_Store
+
+# Secrets
+.env
