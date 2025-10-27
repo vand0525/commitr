@@ -8,3 +8,9 @@ def get_diff():
         check=False
     )
     return result.stdout
+
+def stage():
+    subprocess.run(['git', 'add', '.'])
+
+def commit(message: str):
+    subprocess.run(['git', 'commit', '-m', message])
