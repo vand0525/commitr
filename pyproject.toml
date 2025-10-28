@@ -19,7 +19,7 @@ classifiers = [
 dependencies = ["click", "requests", "openai", "python-dotenv"]
 
 [project.scripts]
-commitr = "pkg.main:main"
+commitr = "pkg.main:cli"
 
 [tool.setuptools]
 packages = ["pkg"]
