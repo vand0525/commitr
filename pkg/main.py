@@ -24,4 +24,6 @@ def process_staging_groups(prompt: str | None, staging_groups: list[dict]):
   
     commit(message)
 
+# I AM SHOWING ERIC COMMITR THIS IS AN IMPOTRANT CHANGE TO NOTICE
+
 
