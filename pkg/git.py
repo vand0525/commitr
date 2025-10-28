@@ -15,15 +15,23 @@ def get_staged_diff():
 
 
 def get_unstaged_paths():
-    result = subprocess.run(
+    tracked_result = subprocess.run(
         ["git", "diff", "--name-only", "-z"],
         capture_output=True,
         text=False,
         check=True,
     )
-    items = result.stdout.split(b"\x00")
-    return [i.decode() for i in items if i]
+    tracked = [p.decode() for p in tracked_result.stdout.split(b"\x00") if p]
 
+    untracked_result = subprocess.run(
+        ["git", "ls-files", "--others", "--exclude-standard", "-z"],
+        capture_output=True,
+        text=False,
+        check=True,
+    )
+    untracked = [p.decode() for p in untracked_result.stdout.split(b"\x00") if p]
+    print(untracked)
+    return list(dict.fromkeys(tracked + untracked))
 
 def stage(paths: list[str]):
     subprocess.run(["git", "add", *paths])
