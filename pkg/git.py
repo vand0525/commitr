@@ -30,7 +30,6 @@ def get_unstaged_paths():
         check=True,
     )
     untracked = [p.decode() for p in untracked_result.stdout.split(b"\x00") if p]
-    print(untracked)
     return list(dict.fromkeys(tracked + untracked))
 
 def stage(paths: list[str]):
