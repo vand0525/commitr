@@ -50,7 +50,7 @@ class Group(BaseModel):
     type: str
     paths: List[str]
 
-class DiffGroups(BaseModel):
+class GroupedDiffs(BaseModel):
     allowed_files: ClassVar[List[str]] = []
     groups: List[Group]
 
@@ -68,7 +68,7 @@ class DiffGroups(BaseModel):
         return groups
 
 def generate_staging_groups(diff: str, unstaged_paths: list[str]) -> list[dict[str, list[str]]]:
-    DiffGroups.allowed_files = unstaged_paths  # inject constraint
+    GroupedDiffs.allowed_files = unstaged_paths  # inject constraint
 
     response = client.responses.parse(
         model=os.getenv("OPENAI_MODEL", "gpt-4.1"),
@@ -94,7 +94,7 @@ def generate_staging_groups(diff: str, unstaged_paths: list[str]) -> list[dict[s
                 ),
             },
         ],
-        text_format=DiffGroups,
+        text_format=GroupedDiffs,
     )
 
     return [
