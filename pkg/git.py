@@ -33,5 +33,5 @@ def unstage_all():
     subprocess.run(["git", "reset"], check=True, stdout=subprocess.DEVNULL,)
 
 
-def commit(message: str):
+def do_commit(message: str):
     subprocess.run(["git", "commit", "-m", message])

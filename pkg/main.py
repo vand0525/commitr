@@ -1,6 +1,6 @@
 import click
 from pkg.llm import generate_commit_message, generate_staging_groups
-from pkg.git import get_unstaged_diff, get_staged_diff, get_unstaged_paths, unstage_all, stage, commit
+from pkg.git import get_unstaged_diff, get_staged_diff, get_unstaged_paths, unstage_all, stage, do_commit
 from pkg.utils import process_staging_groups
 
 @click.group()
